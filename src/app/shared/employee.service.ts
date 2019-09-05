@@ -7,16 +7,17 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class EmployeeService {
 
-  formData : Employee;
+  // formData : Employee;
   list : Employee[];
 
-  readonly rootURL = "https://ovk-payroll-rest.azurewebsites.net/api/organization/employee";
-  // readonly rootURL = 'https://24b60409-e2aa-4bc8-834a-d2ba114cea42.mock.pstmn.io';
+  // readonly rootURL = "https://jsonplaceholder.typicode.com/users";
+  readonly rootURL = "https://ovk-payroll-rest.azurewebsites.net/api/organization/employee/";  
   token = '783741f795a33256dabd06d85069763d7e33643c';
   header = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',
-      'Authorization': `Token ${this.token}`
+      'Authorization': `Token ${this.token}`,
+      'Access-Control-Allow-Headers': 'X-CSRF-Token, Content-Type'
     })
   };
 
@@ -24,9 +25,15 @@ export class EmployeeService {
   
   generateList(){
     this.http.get( this.rootURL, this.header )
-    .toPromise()
-    .then( res => this.list = res as Employee[] )
-    .catch( error => console.error( 'Authorization failed: ' + error.message ) );
+    .subscribe( 
+      res => this.list = res as Employee[],
+      error => console.error("GET REQUEST FAILED:", error)
+    );    
   }
+
+  // getEmployeeList( employees : Employee[] )
+  // {    
+  //   return employees;
+  // }
 
 }

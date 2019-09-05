@@ -8,10 +8,12 @@ import { EmployeeService } from 'src/app/shared/employee.service';
 })
 export class EmployeeListComponent implements OnInit {
 
+  showSpinner = true;
+
   constructor( private service : EmployeeService ) { }
 
   ngOnInit() {
-    this.service.generateList();
+    this.service.generateList();        
   }
 
 }

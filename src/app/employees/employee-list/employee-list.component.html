@@ -6,7 +6,7 @@
     </thead>
     <tbody>
         <tr *ngFor="let emp of service.list">
-            <td> {{ emp.first_name }} </td>
+            <td> {{ emp.first_name | titlecase }} {{ emp.last_name | titlecase }} </td>
         </tr>
     </tbody>
 </table>
