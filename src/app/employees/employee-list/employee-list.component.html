@@ -1,0 +1,12 @@
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Fullname</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let emp of service.list">
+            <td> {{ emp.first_name }} </td>
+        </tr>
+    </tbody>
+</table>
