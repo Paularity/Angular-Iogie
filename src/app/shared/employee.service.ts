@@ -8,7 +8,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class EmployeeService {
 
   // formData : Employee;
-  list : Employee[];
+  // list : Employee[];
 
   // readonly rootURL = "https://jsonplaceholder.typicode.com/users";
   readonly rootURL = "https://ovk-payroll-rest.azurewebsites.net/api/organization/employee/";  
@@ -23,17 +23,24 @@ export class EmployeeService {
 
   constructor( private http : HttpClient ) { }
   
-  generateList(){
-    this.http.get( this.rootURL, this.header )
-    .subscribe( 
-      res => this.list = res as Employee[],
-      error => console.error("GET REQUEST FAILED:", error)
-    );    
+  getEmployees(){
+    return this.http.get( this.rootURL, this.header );
   }
 
-  // getEmployeeList( employees : Employee[] )
-  // {    
-  //   return employees;
+  deleteEmployee( url ){
+    return this.http.delete( url, this.header );
+  }
+
+  // getURL( url ){
+  //   return this.http.get( url, this.header );
+  // }
+
+  // generateList(){
+  //   this.http.get( this.rootURL, this.header )
+  //   .subscribe( 
+  //     res => this.list = res as Employee[] ,
+  //     error => console.error("GET REQUEST FAILED:", error),      
+  //   );    
   // }
 
 }

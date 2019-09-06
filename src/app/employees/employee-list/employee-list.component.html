@@ -2,11 +2,22 @@
     <thead>
         <tr>
             <th>Fullname</th>
+            <th>Options</th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let emp of service.list">
-            <td> {{ emp.first_name | titlecase }} {{ emp.last_name | titlecase }} </td>
+        <tr *ngFor="let emp of list">            
+            <td *ngIf="isLoaded"> 
+                {{ emp.first_name | titlecase }} {{ emp.last_name | titlecase }} 
+            </td>
+            <td *ngIf="isLoaded"> 
+                <a href="#" (click)="onDelete( emp.url )" class="btn btn-danger btn-sm">
+                    <span><i class="fa fa-trash"></i></span>
+                </a> 
+            </td>
+        </tr>
+        <tr *ngIf="!isLoaded" >
+            <td class="text-center" colspan="2"> Loading... </td>
         </tr>
     </tbody>
 </table>
