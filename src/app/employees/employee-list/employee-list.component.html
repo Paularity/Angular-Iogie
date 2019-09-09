@@ -6,18 +6,21 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let emp of list">            
-            <td *ngIf="isLoaded"> 
+        <tr *ngFor="let emp of service.list">            
+            <td *ngIf="service.isLoaded"> 
                 {{ emp.first_name | titlecase }} {{ emp.last_name | titlecase }} 
             </td>
-            <td *ngIf="isLoaded"> 
+            <td *ngIf="service.isLoaded"> 
                 <a href="#" (click)="onDelete( emp.url )" class="btn btn-danger btn-sm">
                     <span><i class="fa fa-trash"></i></span>
                 </a> 
+                <a href="#" (click)="onDelete( emp.url )" class="btn btn-primary btn-sm ml-2">
+                    <span><i class="fa fa-eye"></i></span>
+                </a> 
             </td>
         </tr>
-        <tr *ngIf="!isLoaded" >
-            <td class="text-center" colspan="2"> Loading... </td>
+        <tr *ngIf="!service.isLoaded" >
+            <td class="text-center" colspan="2"> Loading Employees, Please Wait... </td>
         </tr>
     </tbody>
 </table>

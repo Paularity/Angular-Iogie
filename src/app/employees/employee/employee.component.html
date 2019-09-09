@@ -1,0 +1,36 @@
+<div class="card">
+  <div class="card-body">
+        <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
+            <div class="form-row">
+                <div class="form-group col-12">
+                    <input class="form-control" name="last_name" type="text" placeholder="Lastname" #last_name="ngModel" [(ngModel)]="service.formData.last_name" required />
+                    <div class="validation-error" *ngIf="last_name.invalid && last_name.touched">This field is required.</div>
+                </div>
+                <div class="form-group col-12">
+                    <input class="form-control" name="first_name" type="text" placeholder="Firstname" #first_name="ngModel" [(ngModel)]="service.formData.first_name" required />
+                    <div class="validation-error" *ngIf="first_name.invalid && first_name.touched">This field is required.</div>
+                </div>
+                <div class="form-group col-12">
+                    <input class="form-control" name="middle_name" type="text" placeholder="Middlename" #middle_name="ngModel" [(ngModel)]="service.formData.middle_name" />
+                </div>
+                <div class="col-12 form-group">
+                    <input class="form-control" name="nick_name" type="text" placeholder="Nickname" #nick_name="ngModel" [(ngModel)]="service.formData.nick_name" required/>        
+                    <div class="validation-error" *ngIf="nick_name.invalid && nick_name.touched">This field is required.</div>            
+                </div>
+                <div class="col-12 form-group">
+                    <select class="form-control" name="gender" id="gender" #gender="ngModel" [(ngModel)]="service.formData.gender" required>
+                        <option value="" class="text-secondary">Choose a gender...</option>
+                        <option value="http://ovk-payroll-rest.azurewebsites.net/api/organization/gender/1/">Male</option>
+                        <option value="http://ovk-payroll-rest.azurewebsites.net/api/organization/gender/2/">Female</option>
+                    </select>                    
+                    <div class="validation-error" *ngIf="gender.invalid && gender.touched">This field is required.</div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-12">
+                    <button type="submit" [disabled]="form.invalid" class="btn btn-primary btn-block">Submit</button>
+                </div>                
+            </div>
+        </form>
+    </div>
+</div>

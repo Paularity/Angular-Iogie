@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Employee } from './employee.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeeService {
 
-  // formData : Employee;
-  // list : Employee[];
+  formData : Employee;
+  list : Employee[];
+  isLoaded : boolean;
 
   // readonly rootURL = "https://jsonplaceholder.typicode.com/users";
   readonly rootURL = "https://ovk-payroll-rest.azurewebsites.net/api/organization/employee/";  
@@ -31,16 +33,25 @@ export class EmployeeService {
     return this.http.delete( url, this.header );
   }
 
+  postEmployee( emp : Employee ){
+    return this.http.post( this.rootURL, emp, this.header );
+  }
+
   // getURL( url ){
   //   return this.http.get( url, this.header );
   // }
 
-  // generateList(){
-  //   this.http.get( this.rootURL, this.header )
-  //   .subscribe( 
-  //     res => this.list = res as Employee[] ,
-  //     error => console.error("GET REQUEST FAILED:", error),      
-  //   );    
-  // }
+  generateList()
+  {       
+    this.isLoaded = false;
+
+    this.getEmployees()
+      .subscribe(
+        res => {
+          this.list = res as Employee[];
+          this.isLoaded = true;
+        }        
+      );
+  }
 
 }
