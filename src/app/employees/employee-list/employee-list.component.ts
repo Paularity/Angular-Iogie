@@ -31,7 +31,7 @@ export class EmployeeListComponent implements OnInit {
         },
         complete => {
           this.isLoaded = true;
-          console.log(complete);
+          console.log();
         }
       );              
     //debug
