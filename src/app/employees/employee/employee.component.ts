@@ -31,6 +31,7 @@ export class EmployeeComponent implements OnInit {
       first_name: '',
       middle_name: '',
       nick_name: '',
+      birth_date: null,
       gender: ''
     }
   }

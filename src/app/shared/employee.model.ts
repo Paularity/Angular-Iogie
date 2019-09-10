@@ -8,6 +8,6 @@ export class Employee {
     first_name: string;
     middle_name: string;
     nick_name: string;
-    // birth_date: Date;
+    birth_date: Date;
     gender: string;
 }
