@@ -37,18 +37,38 @@ export class EmployeeComponent implements OnInit {
 
   onSubmit(form : NgForm)
   {
-    this.service.isLoaded = false;
-    this.insertRecord( form )
+    this.service.isLoaded = false;    
+
+    if( form.value.url == '' )
+    {
+      this.insertRecord( form );
+    }
+    else
+    {
+      this.updateRecord( form );
+    }    
   }
 
   insertRecord( form: NgForm )
   {
-    this.service.postEmployee( form.value ).subscribe(
-      res => {           
-        this.resetForm(form);     
-        this.service.generateList();
-      }
-    );
+    this.service.postEmployee( form.value )
+      .subscribe(
+        res => {                     
+          this.resetForm(form);     
+          this.service.generateList();
+        }
+      );
+  }
+
+  updateRecord(form: NgForm)
+  {
+    this.service.putEmployee( form.value.url, form.value )
+      .subscribe(
+        res => {           
+          this.resetForm(form);     
+          this.service.generateList();
+        }
+      );
   }
 
 }

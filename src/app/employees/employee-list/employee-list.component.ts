@@ -33,4 +33,9 @@ export class EmployeeListComponent implements OnInit {
       );              
   }
 
+  populateForm( emp : Employee )
+  {
+    this.service.formData = Object.assign({}, emp);
+  }
+
 }

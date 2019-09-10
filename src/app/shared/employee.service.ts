@@ -37,6 +37,10 @@ export class EmployeeService {
     return this.http.post( this.rootURL, emp, this.header );
   }
 
+  putEmployee( url, formData : Employee ){
+    return this.http.put( url, formData, this.header );
+  }
+
   // getURL( url ){
   //   return this.http.get( url, this.header );
   // }
