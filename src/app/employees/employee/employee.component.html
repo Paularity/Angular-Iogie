@@ -28,8 +28,9 @@
                 </div>
             </div>
             <div class="form-row">
-                <div class="form-group col-12">
+                <div class="form-group col-12">                
                     <button type="submit" [disabled]="form.invalid || !service.isLoaded" class="btn btn-primary btn-block">Submit</button>
+                    <button (click)="resetForm()" [disabled]="form.invalid || !service.isLoaded" class="btn btn-warning btn-block">Clear Form</button>                    
                 </div>                
             </div>
         </form>
